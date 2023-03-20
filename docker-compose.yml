@@ -1,0 +1,19 @@
+version: '3'
+services:
+  node-app:
+    build: .
+    ports:
+      - '3200:3200'
+    environment:
+      - PORT=3200
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=kimura
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    volumes:
+      - mongo-db:/data/db
+volumes:
+  mongo-db:
